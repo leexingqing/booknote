@@ -1,0 +1,237 @@
+1、转换
+2、过渡
+3、动画
+4、CSS优化
+1、转换
+   1、什么是转换
+      转换即改变元素的一些状态，大小、位置、形状
+      可以是2d转换，也可以是3d的转换
+      2d : 使元素在 x轴和 y轴上发生变化
+      3d ：2d基础上增加了 z轴的变化
+   2、转换属性
+      CSS3转换属性:
+	transform : none / transform-function;
+	none:不转换，默认值
+	transform-function：表示要实现转换的函数
+	      旋转：rotate()
+	      位移：translate()
+	      缩放：scale()
+	 transform:rotate(); -- 旋转操作
+   3、转换原点：
+        转换原点：即转换过程中围绕的中心点。
+	           默认情况下，原点是在整个元素的中间处
+	更改转换原点：
+	  transform-origin:
+	  取值 ：
+	     数值 ：以元素左上方的点为(0,0)，再去计算其他点
+	  百分比:
+	        0% , 0% : 左上方的点
+		50% ， 50% ：元素的中心点
+	  关键字:
+	        left
+		right
+		top
+		bottom
+		center
+		left top : 表示左上方
+	transform-origin赋值：
+	   一个值 ：x轴的移动
+	   两个值 ：x轴和y轴
+	   三个值 ：x轴，y轴，z轴
+2、2D转换 - 位移
+   位移：位置移动
+          从当前元素的位置处，移动到指定坐标轴位置处
+   函数：
+       translate(x,y)
+       translate(value);
+       取值：  
+            数值、百分比
+	    去负值
+	       x ：正 向右移动
+	           负 向左移动
+	       y : 正 向下移动
+	           负 向上移动
+       单方向位移：
+          translateX(x)
+	  translateY(y)
+3、2D转换 - 缩放
+   缩放：改变元素大小
+   函数：scale(value)
+	 scale(x,y)
+
+	 取值：
+	    默认值 1
+	    缩小：0 - 1 之间的小数
+	    放大：大于1 
+	 scaleX(x) : 横向缩放
+	 scaleY(y) : 纵向缩放
+4、2D转换 - 旋转
+   围绕着指定点，按照指定的角度发生的旋转
+   函数：rotate(-90deg)
+         取值：deg 为角度 0-360
+	       默认为顺时针旋转
+	       deg取值为负的话，则将逆时针旋转
+5、2D转换 - 倾斜
+   函数：skew()
+         取值 ：为角度
+	 skewX(x)
+         skewY(y)
+6、3D转换
+   属性:
+         perspective : 设置假定人眼到投影平面的距离
+	     只影响3D元素，不影响2D元素
+
+         设置位置：加在父元素上，设置好后，其子元素就可以完成3D的转换。
+   1、3d位移
+      改变元素在z轴上的位置
+      属性：transform:
+      函数：translateZ(z);
+            translate3d(x,y,z);
+   2、3d旋转
+      属性：transform
+      函数：
+           rotateX(deg);
+	   rotateY(deg);
+	   rotateZ(deg)
+	   rotate3d(x,y,z,deg);
+	   x,y,z : 取值为 1，0，-1
+	   rotate3d(-1,0,1,45deg);
+****************************************************
+1、过渡
+   1、什么是过渡
+      元素从一个【状态】到另外一个【状态】的【平滑变换】【过程】
+   2、过渡属性
+      transition
+   3、过渡4要素(子属性)
+      1、过渡属性
+         元素的哪个【状态】发生变化时要使用过渡的效果
+         当指定的属性发生改变时，就会触发过渡效果
+	 语法：
+	 transition-property:none | all | property
+	    transition-property:background;
+      2、过渡时间
+         整个过渡效果在多长时间内完成，以 秒(s)或毫秒(ms)为单位
+	 语法：
+	 transition-duration: s|ms;
+	    transition-duration:1s;
+	 注意：
+	    过渡时间默认为 0 ，如果为0时，则没有过渡的效果产生。
+	    如果想看到过渡效果，则必须设置该属性。
+      3、过渡函数
+         指定时间内(transition-duration)过渡的速度效果。
+	 语法：
+	     transition-timing-function
+	 取值：
+	    ease : 默认值，慢速开始，速度变快，慢速结束
+	    linear:匀速开始到结束
+	    ease-in:慢速开始，加速效果(由慢到快)
+	    ease-out:慢速结束，减速效果(由快到慢)
+	    ease-in-out:以慢速开始和结束，先加速再减速
+      4、过渡延迟
+         当过渡操作被激发后，等待多长时间后才开始执行效果
+	 语法：transition-delay
+	 以秒或毫秒作为单位
+      5、统一设置过渡效果
+         属性：
+         transition:
+	 用于设置四个过渡子属性
+	 transition:transition-property transition-duration transition-timing-function transition-delay;
+	 	 transition:width 2s linear 0s;
+
+
+	 transition:prop dura timing delay;
+    4、触发过渡
+       过渡效果由用户的行为进行触发(点击、鼠标悬停)
+  4、多个过渡效果
+     transition-property:prop1,prop2;
+     transition-duration:t1,t2;
+     transition-timing-function:fun1,fun2;
+     transition-delay:delay1,delay2;
+2、动画
+   1、什么是动画
+      将元素的多个状态放在一起进行运行(多个状态间的转换)
+      过渡：实现简单的动态效果
+      动画：实现复杂的动态效果
+      注意：浏览器兼容性
+         Chrome 和 Safari : -webkit-
+	 Firefox : -moz-
+	 Opera : -o-
+      实现动画的步骤:
+        1、声明动画
+	   @keyframes
+	   声明整个动画过程中的不同状态都是什么 
+	2、调用动画
+	   通过 animation 属性  调用已声明动画
+   2、关键帧
+      语法：@keyframes 规则声明动画
+      <style>
+	@keyframes 动画名称{
+		/*定义关键帧即不同时间点上的动画状态*/
+		from | 0%{
+			/*动画的开始状态(样式)*/
+		}
+		/*...若干关键帧*/
+		20%{
+			/*动画在执行到20%的时候的状态(样式)*/
+		}
+		25%{
+			
+		}
+		26%{
+			
+		}
+
+		to | 100%{
+			/*动画结束时候的状态(样式)*/
+		}
+	}
+
+	@-webkit-keyframes changeBack{
+		
+	}
+	@-moz-keyframes changeBack{
+		
+	}
+	@-o-keyframes changeBack{
+		
+	}
+      </style>
+   3、动画属性(调用)
+      1、animation-name : 调用动画的名称，指定 @keyframes 的名字
+      2、animation-duration:动画执行的时常以 s或ms
+      3、animation-timing-function:动画执行时的速度效果
+         取值 ease,linear,ease-in,ease-out,ease-in-out
+      4、animation-delay:延迟时间，以s或ms为单位
+      5、animation-iteration-count
+         动画执行的次数
+	 取值 ：
+	    1、具体数值 
+	    2、infinite : 无限次播放
+      6、animation-direction : 动画播放方向
+         取值：
+	    normal
+	    alternate : 
+	       奇数次播放为正向播放(状态从from - to)
+	       偶数次播放为逆向播放(状态从to - from)
+      7、动画综合属性 : animation
+         ainimation:name duration timing-function delay iteration-count direction;
+         ainimation:second 2s linear 2s infinite;
+      8、animation-fill-mode
+         指定动画在播放之前或之后的效果
+	 none : 默认行为
+	 forwards:动画完成后，保持最后一个状态
+	 backwards : 动画显示之前，保持在第一个状态
+	 both:动画完成后，动画显示前，都被相应的状态所保持着。
+	       
+      9、animation-play-state
+         定义动画播放状态
+	 配合着 Javascript使用，用于播放过程中暂停动画
+	 取值：
+	    paused ：暂停
+	    running ：播放
+   
+
+	      
+      
+        
+
